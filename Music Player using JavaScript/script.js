@@ -369,7 +369,7 @@ document.addEventListener("keydown", (event) => {
     prevBtn.click();
   }
 });     
-
+      
 /* =========================
    START
 ========================= */
