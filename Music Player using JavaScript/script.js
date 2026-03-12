@@ -369,11 +369,11 @@ document.addEventListener("keydown", (event) => {
     prevBtn.click();
   }
 });     
-      
+
 /* =========================
    START
 ========================= */
 
 createPlaylist();
-
+      
 loadSong(0);
