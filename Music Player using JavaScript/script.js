@@ -363,7 +363,7 @@ document.addEventListener("keydown", (event) => {
   
   if (event.code === "ArrowRight") {
     nextBtn.click();
-  }
+  }       
 
   if (event.code === "ArrowLeft") {
     prevBtn.click();
