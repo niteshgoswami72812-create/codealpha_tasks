@@ -353,7 +353,7 @@ document.addEventListener("keydown", (event) => {
 
   if (event.code === "Space") {
     event.preventDefault();
-
+    
     if (isPlaying) {
       pauseSong();
     } else {
