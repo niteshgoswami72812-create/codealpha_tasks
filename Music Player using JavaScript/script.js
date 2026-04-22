@@ -356,7 +356,7 @@ document.addEventListener("keydown", (event) => {
     
     if (isPlaying) {
       pauseSong();
-    } else {
+    } else {      
       playSong();
     }
   }
