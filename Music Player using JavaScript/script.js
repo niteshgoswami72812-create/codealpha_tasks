@@ -360,7 +360,7 @@ document.addEventListener("keydown", (event) => {
       playSong();
     }
   }
-
+  
   if (event.code === "ArrowRight") {
     nextBtn.click();
   }
