@@ -19,8 +19,8 @@
     --yellow: #ffd166;
     --shadow: 0 35px 100px rgba(0, 0, 0, 0.55);
 }
-
-html {
+ 
+html { 
     scroll-behavior: smooth;
 }
 

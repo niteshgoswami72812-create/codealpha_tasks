@@ -11,7 +11,7 @@ const counter = document.getElementById("counter");
 
 let activeCards = Array.from(cards);
 let currentIndex = 0;
-
+ 
 cards.forEach(card => {
     card.addEventListener("click", () => {
         activeCards = Array.from(cards).filter(item => !item.classList.contains("hide"));

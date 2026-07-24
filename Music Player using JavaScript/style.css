@@ -11,7 +11,7 @@ body {
         linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
         linear-gradient(135deg, #141e30, #243b55);
     display: flex;
-    justify-content: center;
+    justify-content: center; 
     align-items: center;
 }
 

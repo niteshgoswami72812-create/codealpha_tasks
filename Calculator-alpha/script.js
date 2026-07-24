@@ -10,7 +10,7 @@ buttons.forEach(function(button){
 
         if(value == "AC"){
 
-            display.value = "";
+            display.value = "";   
 
         }
         else if(value == "⌫"){

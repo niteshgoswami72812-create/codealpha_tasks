@@ -14,7 +14,7 @@ let songs = [
         artist: "Artist Three",
         src: "songs/song3.mp3"
     }
-];
+]; 
 
 let audio = document.getElementById("audio");
 let title = document.getElementById("title");
