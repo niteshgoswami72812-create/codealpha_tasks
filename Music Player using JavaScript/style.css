@@ -46,21 +46,21 @@ body {
     position: relative;
     z-index: 1;
 }
-
+    
 .logo-circle {
-    width: 115px;
-    height: 115px;
-    margin: auto;
-    border-radius: 50%;
-    background: conic-gradient(#ff512f, #dd2476, #7f00ff, #ff512f);
-    color: white;
-    display: flex;
+    width: 115px;    
+    height: 115px;   
+    margin: auto;  
+    border-radius: 50%;  
+    background: conic-gradient(#ff512f, #dd2476, #7f00ff, #ff512f);   
+    color: white;  
+    display: flex;  
     justify-content: center;
     align-items: center;
-    font-size: 40px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    box-shadow: 0 20px 45px rgba(221,36,118,.5);
+    font-size: 40px;  
+    font-weight: 800; 
+    letter-spacing: 2px;   
+    box-shadow: 0 20px 45px rgba(221,36,118,.5);  
 }
 
 .logo h3 {

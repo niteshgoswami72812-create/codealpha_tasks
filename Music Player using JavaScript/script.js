@@ -9,7 +9,7 @@ let songs = [
         artist: "Artist Two",
         src: "songs/song2.mp3"
     },
-    {
+    {   
         title: "Song Three",
         artist: "Artist Three",
         src: "songs/song3.mp3"
