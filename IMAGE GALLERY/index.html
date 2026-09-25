@@ -4,122 +4,440 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Image Gallery</title>
+
+    <title>3D Liquid Glass Gallery</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
- 
+
 <body>
 
+    <!-- Animated Background -->
+    <div class="background">
+        <span class="orb orb-1"></span>
+        <span class="orb orb-2"></span>
+        <span class="orb orb-3"></span>
+    </div>
+
     <main class="gallery-app">
-        <header class="header">
-            <div>
-                <span>Task 1 Project</span>    
-                <h1>Image Gallery</h1>
-                <p>Responsive gallery with filters and lightbox navigation</p>
+
+        <!-- Header -->
+        <header class="header glass">
+
+            <div class="header-content">
+
+                <span class="badge">
+                    ✦ TASK 1 PROJECT
+                </span>
+
+                <h1>
+                    <span>3D</span> Image Gallery
+                </h1>
+
+                <p>
+                    Explore a premium glassmorphism gallery with
+                    interactive 3D effects.
+                </p>
+
             </div>
+
+            <div class="header-glow"></div>
+
         </header>
 
-        <section class="filter-area">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="nature">Nature</button>
-            <button class="filter-btn" data-filter="travel">Travel</button>
-            <button class="filter-btn" data-filter="city">City</button>
-            <button class="filter-btn" data-filter="animals">Animals</button>
+
+        <!-- Filters -->
+        <section class="filter-wrapper glass">
+
+            <div class="filter-area">
+
+                <button class="filter-btn active" data-filter="all">
+                    All
+                </button>
+
+                <button class="filter-btn" data-filter="nature">
+                    Nature
+                </button>
+
+                <button class="filter-btn" data-filter="travel">
+                    Travel
+                </button>
+
+                <button class="filter-btn" data-filter="city">
+                    City
+                </button>
+
+                <button class="filter-btn" data-filter="animals">
+                    Animals
+                </button>
+
+            </div>
+
         </section>
 
+
+        <!-- Gallery -->
         <section class="gallery" id="gallery">
-            <div class="gallery-card" data-category="nature">
-                <img src="./images/Green Valley.jpg" alt="Nature">
-                <div class="overlay">
-                    <h3>Green Valley</h3>
-                    <p>Nature</p>
-                </div>
-            </div>
 
-            <div class="gallery-card" data-category="travel">
-                <img src="./images/Beach.jpg" alt="Travel">
-                <div class="overlay">
-                    <h3>Beach Trip</h3>
-                    <p>Travel</p>
-                </div>
-            </div>
+            <article class="gallery-card" data-category="nature">
 
-            <div class="gallery-card" data-category="city">
-                <img src="./images/house.jpg" alt="City">
-                <div class="overlay">
-                    <h3>Modern House</h3>
-                    <p>City</p>
-                </div>
-            </div>
+                <div class="card-inner">
 
-            <div class="gallery-card" data-category="animals">
-                <img src="./images/dog.jpg" alt="Animals">
-                <div class="overlay">
-                    <h3>Cute Dog</h3>
-                    <p>Animals</p>
-                </div>
-            </div>
+                    <img src="./images/Green Valley.jpg" alt="Green Valley">
 
-            <div class="gallery-card" data-category="nature">
-                <img src="./images/Forest Walk.jpg" alt="Nature">
-                <div class="overlay">
-                    <h3>Forest Walk</h3>
-                    <p>Nature</p>
-                </div>
-            </div>
+                    <div class="shine"></div>
 
-            <div class="gallery-card" data-category="travel">
-                <img src="./images/desert road.jpg" alt="Travel">
-                <div class="overlay">
-                    <h3>Desert Road</h3>
-                    <p>Travel</p>
-                </div>
-            </div>
+                    <div class="overlay">
 
-            <div class="gallery-card" data-category="city">
-                <img src="./images/city light.jpg" alt="City">
-                <div class="overlay">
-                    <h3>City Lights</h3>
-                    <p>City</p>
-                </div>
-            </div>
+                        <span class="category">
+                            NATURE
+                        </span>
 
-            <div class="gallery-card" data-category="animals">
-                <img src="./images/lion.jpg" alt="Animals">
-                <div class="overlay">
-                    <h3>Wild Lion</h3>
-                    <p>Animals</p>
-                </div>
-            </div>
+                        <h3>
+                            Green Valley
+                        </h3>
 
-            <div class="gallery-card" data-category="nature">
-                <img src="./images/lake.jpg" alt="Nature">
-                <div class="overlay">
-                    <h3>Mountain Lake</h3>
-                    <p>Nature</p>
+                        <p>
+                            Beautiful natural landscape
+                        </p>
+
+                        <div class="view">
+                            View Image →
+                        </div>
+
+                    </div>
+
                 </div>
-            </div>
+
+            </article>
+
+
+            <article class="gallery-card" data-category="travel">
+
+                <div class="card-inner">
+
+                    <img src="./images/Beach.jpg" alt="Beach Trip">
+
+                    <div class="shine"></div>
+
+                    <div class="overlay">
+
+                        <span class="category">
+                            TRAVEL
+                        </span>
+
+                        <h3>
+                            Beach Trip
+                        </h3>
+
+                        <p>
+                            Relaxing ocean destination
+                        </p>
+
+                        <div class="view">
+                            View Image →
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article class="gallery-card" data-category="city">
+
+                <div class="card-inner">
+
+                    <img src="./images/house.jpg" alt="Modern House">
+
+                    <div class="shine"></div>
+
+                    <div class="overlay">
+
+                        <span class="category">
+                            CITY
+                        </span>
+
+                        <h3>
+                            Modern House
+                        </h3>
+
+                        <p>
+                            Contemporary architecture
+                        </p>
+
+                        <div class="view">
+                            View Image →
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article class="gallery-card" data-category="animals">
+
+                <div class="card-inner">
+
+                    <img src="./images/dog.jpg" alt="Cute Dog">
+
+                    <div class="shine"></div>
+
+                    <div class="overlay">
+
+                        <span class="category">
+                            ANIMALS
+                        </span>
+
+                        <h3>
+                            Cute Dog
+                        </h3>
+
+                        <p>
+                            Friendly little companion
+                        </p>
+
+                        <div class="view">
+                            View Image →
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article class="gallery-card" data-category="nature">
+
+                <div class="card-inner">
+
+                    <img src="./images/Forest Walk.jpg" alt="Forest Walk">
+
+                    <div class="shine"></div>
+
+                    <div class="overlay">
+
+                        <span class="category">
+                            NATURE
+                        </span>
+
+                        <h3>
+                            Forest Walk
+                        </h3>
+
+                        <p>
+                            Peaceful green forest
+                        </p>
+
+                        <div class="view">
+                            View Image →
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article class="gallery-card" data-category="travel">
+
+                <div class="card-inner">
+
+                    <img src="./images/desert road.jpg" alt="Desert Road">
+
+                    <div class="shine"></div>
+
+                    <div class="overlay">
+
+                        <span class="category">
+                            TRAVEL
+                        </span>
+
+                        <h3>
+                            Desert Road
+                        </h3>
+
+                        <p>
+                            Adventure through the desert
+                        </p>
+
+                        <div class="view">
+                            View Image →
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article class="gallery-card" data-category="city">
+
+                <div class="card-inner">
+
+                    <img src="./images/city light.jpg" alt="City Lights">
+
+                    <div class="shine"></div>
+
+                    <div class="overlay">
+
+                        <span class="category">
+                            CITY
+                        </span>
+
+                        <h3>
+                            City Lights
+                        </h3>
+
+                        <p>
+                            Vibrant urban nightlife
+                        </p>
+
+                        <div class="view">
+                            View Image →
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article class="gallery-card" data-category="animals">
+
+                <div class="card-inner">
+
+                    <img src="./images/lion.jpg" alt="Wild Lion">
+
+                    <div class="shine"></div>
+
+                    <div class="overlay">
+
+                        <span class="category">
+                            ANIMALS
+                        </span>
+
+                        <h3>
+                            Wild Lion
+                        </h3>
+
+                        <p>
+                            Powerful wildlife portrait
+                        </p>
+
+                        <div class="view">
+                            View Image →
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article class="gallery-card" data-category="nature">
+
+                <div class="card-inner">
+
+                    <img src="./images/lake.jpg" alt="Mountain Lake">
+
+                    <div class="shine"></div>
+
+                    <div class="overlay">
+
+                        <span class="category">
+                            NATURE
+                        </span>
+
+                        <h3>
+                            Mountain Lake
+                        </h3>
+
+                        <p>
+                            Calm mountain scenery
+                        </p>
+
+                        <div class="view">
+                            View Image →
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
         </section>
+
     </main>
 
+
+    <!-- Lightbox -->
+
     <section class="lightbox" id="lightbox">
-        <button class="close-btn" id="closeBtn">&times;</button>
 
-        <button class="nav-btn prev-btn" id="prevBtn">&#10094;</button>
+        <div class="lightbox-bg"></div>
 
-        <div class="lightbox-content">
-            <img src="" alt="Preview" id="lightboxImg">
-            <div class="image-info">
-                <h2 id="imageTitle">Image Title</h2>
-                <p id="imageCategory">Category</p>
-                <span id="counter">1 / 9</span>
+        <button class="close-btn" id="closeBtn">
+            ×
+        </button>
+
+        <button class="nav-btn prev-btn" id="prevBtn">
+            ‹
+        </button>
+
+
+        <div class="lightbox-card">
+
+            <div class="lightbox-image-wrapper">
+
+                <img src="" alt="Preview" id="lightboxImg">
+
+                <div class="image-shine"></div>
+
             </div>
+
+
+            <div class="image-info">
+
+                <div>
+
+                    <span id="imageCategory">
+                        CATEGORY
+                    </span>
+
+                    <h2 id="imageTitle">
+                        Image Title
+                    </h2>
+
+                </div>
+
+                <div class="counter" id="counter">
+                    1 / 9
+                </div>
+
+            </div>
+
         </div>
 
-        <button class="nav-btn next-btn" id="nextBtn">&#10095;</button>
+
+        <button class="nav-btn next-btn" id="nextBtn">
+            ›
+        </button>
+
     </section>
 
+
     <script src="script.js"></script>
+
 </body>
 
 </html>
