@@ -7,8 +7,8 @@ let songs = [
     {
         title: "Song Two",
         artist: "Artist Two",
-        src: "songs/song2.mp3"
-    },
+        src: "songs/song2.mp3"  
+    }, 
     {   
         title: "Song Three",
         artist: "Artist Three",

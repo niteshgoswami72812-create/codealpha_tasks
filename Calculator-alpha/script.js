@@ -6,7 +6,7 @@ buttons.forEach(function(button){
 
     button.addEventListener("click", function(){
 
-        let value = button.innerText;
+        let value = button.innerText;   
 
         if(value == "AC"){
 

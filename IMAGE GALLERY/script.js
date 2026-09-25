@@ -17,7 +17,7 @@ cards.forEach(card => {
         activeCards = Array.from(cards).filter(item => !item.classList.contains("hide"));
         currentIndex = activeCards.indexOf(card);
         openLightbox();
-    });
+    });    
 });
 
 filterButtons.forEach(button => {
