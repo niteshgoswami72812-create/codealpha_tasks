@@ -1,91 +1,323 @@
-let display = document.getElementById("display");
+const display = document.getElementById("display");
+const history = document.getElementById("history");
 
-let buttons = document.querySelectorAll("button");
+const buttons = document.querySelectorAll(".btn");
 
-buttons.forEach(function(button){
+let expression = "";
 
-    button.addEventListener("click", function(){
 
-        let value = button.innerText;   
+/* =========================
+   BUTTON CLICK
+========================= */
 
-        if(value == "AC"){
+buttons.forEach(button => {
 
-            display.value = "";   
+    button.addEventListener("click", () => {
 
+        const value = button.textContent.trim();
+
+
+        // Clear
+        if (button.classList.contains("clear")) {
+
+            expression = "";
+
+            display.value = "";
+
+            history.textContent = "";
+
+            return;
         }
-        else if(value == "⌫"){
 
-            display.value = display.value.slice(0,-1);
 
+        // Delete
+        if (button.classList.contains("delete")) {
+
+            expression = expression.slice(0, -1);
+
+            display.value = expression;
+
+            return;
         }
-        else if(value == "="){
+
+
+        // Equal
+        if (button.classList.contains("equal")) {
 
             calculate();
 
+            return;
         }
-        else{
 
-            display.value += value;
 
+        // Percentage
+        if (button.classList.contains("percent")) {
+
+            if (!expression) return;
+
+            expression += "%";
+
+            display.value = expression;
+
+            return;
+        }
+
+
+        // Operator
+        if (button.classList.contains("operator")) {
+
+            const operator = convertOperator(value);
+
+            addOperator(operator);
+
+            return;
+        }
+
+
+        // Number / decimal
+        if (button.classList.contains("number")) {
+
+            if (value === ".") {
+
+                addDecimal();
+
+            } else {
+
+                expression += value;
+
+                display.value = expression;
+
+            }
         }
 
     });
 
 });
 
-function calculate(){
 
-    try{
+/* =========================
+   OPERATOR CONVERSION
+========================= */
 
-        let expression = display.value.replace(/%/g,"/100");
+function convertOperator(operator) {
 
-        display.value = eval(expression);
+    if (operator === "×") {
+        return "*";
+    }
+
+    if (operator === "÷") {
+        return "/";
+    }
+
+    if (operator === "−") {
+        return "-";
+    }
+
+    return operator;
+}
+
+
+/* =========================
+   ADD OPERATOR
+========================= */
+
+function addOperator(operator) {
+
+    if (!expression) {
+
+        if (operator === "-") {
+
+            expression = "-";
+
+            display.value = expression;
+        }
+
+        return;
+    }
+
+
+    const last = expression.slice(-1);
+
+
+    if (["+", "-", "*", "/"].includes(last)) {
+
+        expression = expression.slice(0, -1);
+    }
+
+
+    expression += operator;
+
+    display.value = expression;
+}
+
+
+/* =========================
+   DECIMAL
+========================= */
+
+function addDecimal() {
+
+    const parts = expression.split(/[+\-*/]/);
+
+    const currentNumber = parts[parts.length - 1];
+
+
+    if (currentNumber.includes(".")) {
+        return;
+    }
+
+
+    if (!currentNumber) {
+
+        expression += "0.";
+
+    } else {
+
+        expression += ".";
 
     }
-    catch{
+
+
+    display.value = expression;
+}
+
+
+/* =========================
+   CALCULATE
+========================= */
+
+function calculate() {
+
+    if (!expression) {
+        return;
+    }
+
+
+    try {
+
+        let calculation = expression;
+
+
+        // Percentage
+        calculation = calculation.replace(
+            /(\d+(?:\.\d+)?)%/g,
+            "($1/100)"
+        );
+
+
+        // Security check
+        if (!/^[0-9+\-*/().%\s]+$/.test(calculation)) {
+
+            throw new Error();
+        }
+
+
+        const result = Function(
+            `"use strict"; return (${calculation})`
+        )();
+
+
+        if (!Number.isFinite(result)) {
+            throw new Error();
+        }
+
+
+        history.textContent = expression
+            .replace(/\*/g, "×")
+            .replace(/\//g, "÷")
+            .replace(/-/g, "−");
+
+
+        expression = String(
+            Number(result.toFixed(10))
+        );
+
+
+        display.value = expression;
+
+    }
+
+    catch {
 
         display.value = "Error";
 
-        setTimeout(function(){
-
-            display.value = "";
-
-        },1000);
+        expression = "";
 
     }
 
 }
 
-document.addEventListener("keydown", function(e){
 
-    let key = e.key;
+/* =========================
+   KEYBOARD SUPPORT
+========================= */
 
-    if(
-        (key >= "0" && key <= "9") ||
-        key == "+" ||
-        key == "-" ||
-        key == "*" ||
-        key == "/" ||
-        key == "."
-    ){
+document.addEventListener("keydown", event => {
 
-        display.value += key;
+    const key = event.key;
 
+
+    // Numbers
+    if (/[0-9]/.test(key)) {
+
+        expression += key;
+
+        display.value = expression;
     }
-    else if(key == "Enter"){
+
+
+    // Decimal
+    else if (key === ".") {
+
+        addDecimal();
+    }
+
+
+    // Operators
+    else if (["+", "-", "*", "/"].includes(key)) {
+
+        addOperator(key);
+    }
+
+
+    // Equal
+    else if (
+        key === "Enter" ||
+        key === "="
+    ) {
 
         calculate();
-
     }
-    else if(key == "Backspace"){
 
-        display.value = display.value.slice(0,-1);
 
+    // Delete
+    else if (key === "Backspace") {
+
+        expression = expression.slice(0, -1);
+
+        display.value = expression;
     }
-    else if(key == "Escape"){
+
+
+    // Clear
+    else if (key === "Escape") {
+
+        expression = "";
 
         display.value = "";
 
+        history.textContent = "";
+    }
+
+
+    // Percentage
+    else if (key === "%") {
+
+        if (!expression) return;
+
+        expression += "%";
+
+        display.value = expression;
     }
 
 });

@@ -4,53 +4,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Calculator</title>
-   
+
+    <title>Nitesh 3D Calculator</title>
+
     <link rel="stylesheet" href="style.css">
-</head>     
+</head>
 
 <body>
 
-    <div class="calculator">
+    <div class="background">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="orb orb-three"></div>
+    </div>
+
+    <main class="calculator">
+
+        <div class="top-bar">
+            <span class="status-dot"></span>
+            <span>CALCULATOR</span>
+            <span class="version">3D</span>
+        </div>
 
         <div class="display">
-            <input type="text" id="display" readonly>
+
+            <div class="display-glow"></div>
+
+            <div class="history" id="history"></div>
+
+            <input
+                type="text"
+                id="display"
+                readonly
+                placeholder="0"
+            >
+
         </div>
 
         <div class="buttons">
 
-            <button class="operator clear">AC</button>
-            <button class="operator delete">⌫</button>
-            <button class="operator">%</button>
-            <button class="operator">/</button>
+            <button class="btn utility clear">AC</button>
+            <button class="btn utility delete">⌫</button>
+            <button class="btn utility percent">%</button>
+            <button class="btn operator">÷</button>
 
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button class="operator">*</button>
+            <button class="btn number">7</button>
+            <button class="btn number">8</button>
+            <button class="btn number">9</button>
+            <button class="btn operator">×</button>
 
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button class="operator">-</button>
+            <button class="btn number">4</button>
+            <button class="btn number">5</button>
+            <button class="btn number">6</button>
+            <button class="btn operator">−</button>
 
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button class="operator">+</button>
+            <button class="btn number">1</button>
+            <button class="btn number">2</button>
+            <button class="btn number">3</button>
+            <button class="btn operator">+</button>
 
-            <button>0</button>
-            <button>.</button>
-            <button class="equal">=</button>
+            <button class="btn number zero">0</button>
+            <button class="btn number">.</button>
+            <button class="btn equal">=</button>
 
         </div>
 
-    </div>
+        <div class="calculator-bottom">
+            <span></span>
+            <div class="mini-line"></div>
+            <span>NEON MODE</span>
+        </div>
 
-    <div class="footer">
-        <p>Designed By</p>
+    </main>
+
+    <footer class="footer">
+
+        <p>DESIGNED & DEVELOPED BY</p>
+
         <h2>Nitesh Goswami</h2>
-    </div>
+
+        <div class="footer-line"></div>
+
+    </footer>
 
     <script src="script.js"></script>
 
