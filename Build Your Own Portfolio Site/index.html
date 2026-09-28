@@ -1,249 +1,614 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>   
+<html lang="en" data-theme="light">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nitesh Portfolio</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Nitesh Goswami - Frontend Web Developer Portfolio showcasing modern, responsive websites built with HTML5, CSS3, and JavaScript." />
+  <meta name="keywords" content="Nitesh Goswami, Frontend Developer, Web Designer, Portfolio, HTML, CSS, JavaScript" />
+  <meta name="author" content="Nitesh Goswami" />
+  
+  <title>Nitesh Goswami | Frontend Web Developer Portfolio</title>
+
+  <!-- Prevent Theme Flicker (FOUC) -->
+  <script>   
+    (function () {
+      try {
+        const savedTheme = localStorage.getItem('portfolio-theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const activeTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', activeTheme);
+        document.documentElement.style.colorScheme = activeTheme;
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>        
-        
-  <nav class="navbar">
-    <div class="logo">Nit<span>esh</span></div>
+<body>
+  <!-- Header / Navigation -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo" aria-label="Nitesh Portfolio Homepage">
+        <span class="logo-symbol">&lt;</span>Nit<span class="logo-accent">esh</span><span class="logo-symbol">/&gt;</span>
+      </a>
 
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#projects">Work</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+      <!-- Desktop & Mobile Nav Links -->
+      <nav class="nav-menu" id="nav-links" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#home" class="nav-item active">Home</a></li>
+          <li><a href="#services" class="nav-item">Services</a></li>
+          <li><a href="#projects" class="nav-item">Work</a></li>
+          <li><a href="#skills" class="nav-item">Skills</a></li>
+          <li><a href="#about" class="nav-item">About</a></li>
+          <li><a href="#contact" class="nav-item">Contact</a></li>
+        </ul>
+        <div class="mobile-nav-cta">
+          <a href="#contact" class="btn btn-primary btn-sm">Hire Me →</a>
+        </div>
+      </nav>
 
-    <a href="#contact" class="hire-btn">Hire Me →</a>
-  </nav>
+      <!-- Nav Controls: Theme Toggle & Hire Button & Hamburger -->
+      <div class="nav-actions">
+        <!-- Dark / Light Mode Toggle Button -->
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode" title="Toggle theme">
+          <!-- Sun Icon (shown in dark mode) -->
+          <svg class="theme-icon icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <!-- Moon Icon (shown in light mode) -->
+          <svg class="theme-icon icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <a href="#contact" class="btn btn-primary nav-hire-btn">Hire Me →</a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button id="menu-toggle" class="menu-toggle-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
 
   <main>
-
+    <!-- Hero Section -->
     <section class="hero" id="home">
-      <div class="hero-left">
-        <p class="available">AVAILABLE FOR WORK</p>
+      <div class="hero-container">
+        <div class="hero-left">
+          <div class="status-badge">
+            <span class="status-dot"></span>
+            <span>Available for Work &amp; Freelance</span>
+          </div>
 
-        <h1>Hi, I'm <span>Nitesh</span></h1>
+          <h1 class="hero-title">
+            Hi, I'm <span class="gradient-text">Nitesh Goswami</span>
+          </h1>
 
-        <p class="description">
-          I'm a frontend web developer who enjoys building modern, responsive
-          and user-friendly websites using HTML, CSS and JavaScript.
-        </p>
+          <p class="hero-role">Frontend Web Developer &amp; UI Enthusiast</p>
+
+          <p class="hero-description">
+            I craft clean, ultra-responsive, and modern web interfaces using HTML, CSS, and JavaScript. 
+            Passionate about transforming creative ideas into high-performance, user-friendly digital experiences.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn btn-primary">
+              <span>View Projects</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="#contact" class="btn btn-secondary">
+              <span>Get In Touch</span>
+            </a>
+          </div>
+
+          <div class="social-links-wrap">
+            <span class="social-label">Connect with me:</span>
+            <div class="social-links">
+              <a href="https://github.com/niteshgoswami72812-create" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub Profile" aria-label="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+              <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" class="social-icon" title="LinkedIn Profile" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </a>
+              <a href="mailto:niteshgoswami72812@gmail.com" class="social-icon" title="Send Email" aria-label="Email">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-image-wrapper">
+            <div class="ambient-glow"></div>
+            <div class="image-frame">
+              <img src="./images/IMG_0987.PNG" alt="Nitesh Goswami - Frontend Web Developer" class="profile-img" />
+            </div>
+
+            <!-- Floating Badge 1 -->
+            <div class="floating-badge badge-top-right">
+              <div class="badge-icon">⚡</div>
+              <div class="badge-text">
+                <span class="badge-title">Fast &amp; Clean</span>
+                <span class="badge-desc">Modern Code</span>
+              </div>
+            </div>
+
+            <!-- Floating Badge 2 -->
+            <div class="floating-badge badge-bottom-left">
+              <div class="badge-icon">💻</div>
+              <div class="badge-text">
+                <span class="badge-title">Frontend Dev</span>
+                <span class="badge-desc">HTML • CSS • JS</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="hero-right">
-        <img src="./images/IMG_0987.PNG" alt="Nitesh Profile" />
+      <!-- Highlights Ticker Bar -->
+      <div class="highlights-bar">
+        <div class="highlight-item">
+          <span class="highlight-icon">📱</span>
+          <span class="highlight-text"><strong>100%</strong> Responsive</span>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-icon">⚡</span>
+          <span class="highlight-text"><strong>Clean</strong> Code Architecture</span>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-icon">🎨</span>
+          <span class="highlight-text"><strong>Modern</strong> UI/UX Focus</span>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-icon">🚀</span>
+          <span class="highlight-text"><strong>Fast</strong> Performance</span>
+        </div>
       </div>
     </section>
 
-    <section class="services-section" id="services">
+    <!-- Services Section -->
+    <section class="section services-section" id="services">
       <div class="container">
-        <p class="subtitle">WHAT I DO</p>
-        <h2 class="title">Services</h2>
+        <div class="section-header">
+          <p class="section-tag">WHAT I DO</p>
+          <h2 class="section-title">Specialized Services</h2>
+          <p class="section-subtitle">Delivering high quality frontend solutions tailored to create impactful web experiences.</p>
+        </div>
 
         <div class="services-grid">
-
+          <!-- Service Card 1 -->
           <div class="service-card">
-            <div class="icon-box">💻</div>
-            <h3>Website Design</h3>
-            <ul>
-              <li>HTML</li>
-              <li>CSS</li>
-              <li>Responsive Layout</li>
+            <div class="card-icon-box">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            </div>
+            <h3>Website Design &amp; Layout</h3>
+            <p>Creating clean, mobile-first responsive layouts with modern CSS, Flexbox, and CSS Grid that look beautiful on all screen sizes.</p>
+            <ul class="service-feature-list">
+              <li><span class="check-icon">✓</span> Modern Responsive Layouts</li>
+              <li><span class="check-icon">✓</span> Cross-Browser Compatibility</li>
+              <li><span class="check-icon">✓</span> Semantic HTML5 Architecture</li>
             </ul>
           </div>
 
-          <div class="service-card dark-card">
-            <div class="icon-box dark-icon">&lt;/&gt;</div>
+          <!-- Service Card 2 -->
+          <div class="service-card card-featured">
+            <div class="featured-ribbon">Popular</div>
+            <div class="card-icon-box">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            </div>
             <h3>Frontend Development</h3>
-            <ul>
-              <li>HTML</li>
-              <li>CSS</li>
-              <li>JavaScript</li>
-              <li>Clean UI Design</li>
+            <p>Building interactive, dynamic user interfaces with vanilla JavaScript, DOM manipulation, smooth animations, and clean modular code.</p>
+            <ul class="service-feature-list">
+              <li><span class="check-icon">✓</span> JavaScript ES6+ Features</li>
+              <li><span class="check-icon">✓</span> Dark / Light Mode Theming</li>
+              <li><span class="check-icon">✓</span> Interactive Web Components</li>
             </ul>
           </div>
 
+          <!-- Service Card 3 -->
           <div class="service-card">
-            <div class="icon-box">🛠️</div>
-            <h3>Tools</h3>
-            <ul>
-              <li>Git & GitHub</li>
-              <li>VS Code</li>
-              <li>Figma</li>
-              <li>Agile Scrum</li>
+            <div class="card-icon-box">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+            </div>
+            <h3>Developer Tooling &amp; Workflow</h3>
+            <p>Utilizing industry-standard tools to maintain clean version control, efficient development cycles, and collaborative code delivery.</p>
+            <ul class="service-feature-list">
+              <li><span class="check-icon">✓</span> Git &amp; GitHub Version Control</li>
+              <li><span class="check-icon">✓</span> VS Code Optimization</li>
+              <li><span class="check-icon">✓</span> Figma to Pixel-Perfect Code</li>
             </ul>
           </div>
 
-          <div class="service-card dark-card">
-            <div class="icon-box dark-icon">🤖</div>
-            <h3>AI Superpower</h3>
-            <ul>
-              <li>Prompt Engineering</li>
-              <li>AI Tools</li>
-              <li>Content Generation</li>
-              <li>Smart Coding Help</li>
+          <!-- Service Card 4 -->
+          <div class="service-card">
+            <div class="card-icon-box">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+            </div>
+            <h3>AI-Assisted Web Craft</h3>
+            <p>Leveraging cutting-edge AI tools and prompt engineering to accelerate development, optimize code quality, and implement best practices.</p>
+            <ul class="service-feature-list">
+              <li><span class="check-icon">✓</span> Rapid UI Prototyping</li>
+              <li><span class="check-icon">✓</span> Smart Debugging &amp; Refactoring</li>
+              <li><span class="check-icon">✓</span> Optimized Web Performance</li>
             </ul>
           </div>
-
         </div>
       </div>
     </section>
 
-    <section class="portfolio-section" id="projects">
-      <div class="portfolio-header">
-        <div>
-          <p class="portfolio-subtitle">PORTFOLIO</p>
-          <h2 class="portfolio-title">Projects</h2>
+    <!-- Projects Section -->
+    <section class="section portfolio-section" id="projects">
+      <div class="container">
+        <div class="portfolio-header">
+          <div>
+            <p class="section-tag">PORTFOLIO</p>
+            <h2 class="section-title">Featured Projects</h2>
+          </div>
+          <!-- Filter Tabs -->
+          <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="frontend">Frontend</button>
+            <button class="filter-btn" data-filter="javascript">JavaScript</button>
+            <button class="filter-btn" data-filter="ui">UI/Design</button>
+          </div>
         </div>
 
-        <a href="#projects" class="project-btn">All Projects →</a>
-      </div>
-
-      <div class="portfolio-grid">
-        <div class="project-card">
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200" alt="Portfolio Project" />
-
-          <div class="project-content">
-            <div class="tags">
-              <span>Portfolio</span>
-              <span>HTML</span>
-              <span>CSS</span>
+        <div class="portfolio-grid">
+          <!-- Project 1 -->
+          <article class="project-card" data-category="frontend ui">
+            <div class="project-img-wrap">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1000&auto=format&fit=crop&q=80" alt="Personal Portfolio Project Screenshot" loading="lazy" />
+              <div class="project-overlay">
+                <a href="#home" class="overlay-link">View Details</a>
+              </div>
             </div>
+            <div class="project-content">
+              <div class="tags">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Dark Mode</span>
+              </div>
+              <h3 class="project-name">Personal Portfolio Site</h3>
+              <p class="project-desc">
+                A high-performance personal developer portfolio featuring a dynamic dark/light mode toggle with localStorage persistence, fluid animations, responsive navbar drawer, and clean glassmorphism UI.
+              </p>
+              <div class="project-actions">
+                <a href="#home" class="btn btn-outline btn-sm">Live Demo ↗</a>
+                <a href="https://github.com/niteshgoswami72812-create" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">GitHub Code ↗</a>
+              </div>
+            </div>
+          </article>
 
-            <h3>Personal Portfolio</h3>
+          <!-- Project 2 -->
+          <article class="project-card" data-category="frontend javascript">
+            <div class="project-img-wrap">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&auto=format&fit=crop&q=80" alt="Analytics and Productivity Dashboard" loading="lazy" />
+              <div class="project-overlay">
+                <a href="#projects" class="overlay-link">View Details</a>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="tags">
+                <span class="tag">JavaScript</span>
+                <span class="tag">CSS Grid</span>
+                <span class="tag">Responsive</span>
+              </div>
+              <h3 class="project-name">Interactive Web Dashboard</h3>
+              <p class="project-desc">
+                Clean interactive web dashboard with real-time DOM updates, responsive grid layouts, custom data cards, and intuitive controls designed for smooth everyday productivity.
+              </p>
+              <div class="project-actions">
+                <a href="#projects" class="btn btn-outline btn-sm">Preview ↗</a>
+                <a href="https://github.com/niteshgoswami72812-create" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">GitHub Code ↗</a>
+              </div>
+            </div>
+          </article>
 
-            <p>
-              Modern responsive portfolio website built using HTML and CSS
-              with clean layout, smooth design and professional UI.
+          <!-- Project 3 -->
+          <article class="project-card" data-category="ui frontend">
+            <div class="project-img-wrap">
+              <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1000&auto=format&fit=crop&q=80" alt="E-Commerce Landing Page" loading="lazy" />
+              <div class="project-overlay">
+                <a href="#projects" class="overlay-link">View Details</a>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="tags">
+                <span class="tag">UI/UX</span>
+                <span class="tag">Modern CSS</span>
+                <span class="tag">Flexbox</span>
+              </div>
+              <h3 class="project-name">Modern Product Showcase</h3>
+              <p class="project-desc">
+                Sleek e-commerce style product landing page with micro-interactions, responsive media queries, interactive card hover states, and accessible modern typography.
+              </p>
+              <div class="project-actions">
+                <a href="#projects" class="btn btn-outline btn-sm">Preview ↗</a>
+                <a href="https://github.com/niteshgoswami72812-create" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">GitHub Code ↗</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section skills-section" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-tag">SKILLS &amp; TOOLS</p>
+          <h2 class="section-title">My Technical Arsenal</h2>
+          <p class="section-subtitle">Technologies and software tools I work with daily to bring ideas to life.</p>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Skill Card 1 -->
+          <div class="skill-card">
+            <div class="skill-icon-wrap" style="color: #e34f26;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2l1.6 17.5L12 22l6.4-2.5L20 2H4z"></path><path d="M7 6h10l-.8 8-4.2 1.5-4.2-1.5-.4-4.5"></path></svg>
+            </div>
+            <h4>HTML5</h4>
+            <span class="skill-level">Semantic &amp; SEO-Friendly</span>
+          </div>
+
+          <!-- Skill Card 2 -->
+          <div class="skill-card">
+            <div class="skill-icon-wrap" style="color: #1572b6;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2l1.6 17.5L12 22l6.4-2.5L20 2H4z"></path><path d="M12 6v12M7 10h10M7 14h10"></path></svg>
+            </div>
+            <h4>CSS3 &amp; Flexbox/Grid</h4>
+            <span class="skill-level">Responsive &amp; Animations</span>
+          </div>
+
+          <!-- Skill Card 3 -->
+          <div class="skill-card">
+            <div class="skill-icon-wrap" style="color: #f7df1e;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M16 8v8M12 12v4"></path></svg>
+            </div>
+            <h4>JavaScript (ES6+)</h4>
+            <span class="skill-level">DOM &amp; Interactivity</span>
+          </div>
+
+          <!-- Skill Card 4 -->
+          <div class="skill-card">
+            <div class="skill-icon-wrap" style="color: #f05032;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M6 9v6M18 9a9 9 0 0 0-9 9"></path></svg>
+            </div>
+            <h4>Git &amp; GitHub</h4>
+            <span class="skill-level">Version Control &amp; Collab</span>
+          </div>
+
+          <!-- Skill Card 5 -->
+          <div class="skill-card">
+            <div class="skill-icon-wrap" style="color: #007acc;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            </div>
+            <h4>VS Code</h4>
+            <span class="skill-level">Development Environment</span>
+          </div>
+
+          <!-- Skill Card 6 -->
+          <div class="skill-card">
+            <div class="skill-icon-wrap" style="color: #a259ff;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+            </div>
+            <h4>Figma to Code</h4>
+            <span class="skill-level">Pixel-Perfect UI Translation</span>
+          </div>
+
+          <!-- Skill Card 7 -->
+          <div class="skill-card">
+            <div class="skill-icon-wrap" style="color: #10b981;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+            </div>
+            <h4>Mobile-First Design</h4>
+            <span class="skill-level">Cross-Device Adaptability</span>
+          </div>
+
+          <!-- Skill Card 8 -->
+          <div class="skill-card">
+            <div class="skill-icon-wrap" style="color: #6366f1;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <h4>Prompt Engineering &amp; AI</h4>
+            <span class="skill-level">Accelerated Development</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="about-container">
+          <div class="about-image-wrap">
+            <div class="about-img-frame">
+              <img src="./images/IMG_0987.PNG" alt="Nitesh Goswami" class="about-img" />
+            </div>
+            <div class="about-experience-badge">
+              <span class="exp-icon">🚀</span>
+              <div>
+                <strong>Passionate</strong>
+                <span>Frontend Builder</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-content">
+            <p class="section-tag">ABOUT ME</p>
+            <h2 class="about-title">Dedicated to crafting clean &amp; intuitive web experiences</h2>
+
+            <p class="about-text">
+              Hello! I'm <strong>Nitesh Goswami</strong>, an energetic and curious frontend web developer. 
+              I have a strong passion for transforming creative concepts into engaging, accessible, and responsive digital products.
             </p>
-          </div>
-        </div>
-      </div>
-    </section>
-   
-    <section class="about-section" id="about">
-      <div class="about-container">     
 
-        <div class="about-image">
-          <img src="./images/IMG_0987.PNG" alt="Nitesh About" />
-        </div>
-     
-        <div class="about-content">        
-          <p class="about-subtitle">ABOUT ME</p>        
-        
-          <h2>A bit about <br />who I am</h2>   
-   
-          <p class="about-text">   
-            Hi, I'm <strong>Nitesh</strong>, a passionate web developer who
-            enjoys building modern websites and solving real-world problems
-            through technology.   
-          </p>
- 
-          <p class="about-text">    
-            My expertise includes frontend development with HTML, CSS and
-            JavaScript. I focus on creating responsive, clean and user-friendly
-            websites.
-          </p>  
+            <p class="about-text">
+              My technical journey focuses on building responsive layouts using semantic HTML5, modern CSS3 (Flexbox &amp; Grid), and vanilla JavaScript. 
+              I continuously explore best practices, modern web APIs, and sleek visual design trends to write clean, maintainable code.
+            </p>
 
-          <div class="skills"> 
-            <h4>STACK & TOOLS</h4>
-   
-            <div class="skill-tags">
-              <span>HTML</span> 
-              <span>CSS</span>
-              <span>JavaScript</span> 
-              <span>Git</span>
-              <span>GitHub</span> 
-              <span>VS Code</span>
-              <span>Agile Scrum</span>
-              <span>Figma</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="contact-section" id="contact">
-      <div class="contact-container">
-
-        <div class="contact-left">
-          <p class="contact-subtitle">GET IN TOUCH</p>
-
-          <h2>Let's work <br />together</h2>
-
-          <p class="contact-description">
-            I'm available for website design, frontend development and
-            responsive portfolio projects.
-          </p>
-
-          <div class="contact-info">
-
-            <div class="info-item">
-              <span>📧</span>
-              <a href="mailto:niteshgoswami72812@gmail.com" class="contact-link">
-                niteshgoswami72812@gmail.com
-              </a>
-            </div>
-
-            <div class="info-item">
-              <span>💼</span>
-              <a href="https://www.linkedin.com/" target="_blank" class="contact-link">
-                LinkedIn Profile
-              </a>
-            </div>
-
-            <div class="info-item">
-              <span>💻</span>
-              <a href="https://github.com/niteshgoswami72812-create" target="_blank" class="contact-link">
-                GitHub Profile
-              </a>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="contact-right">
-          <form action="mailto:niteshgoswami72812@gmail.com" method="post" enctype="text/plain">
-
-            <div class="row">
-              <div class="input-group">
-                <label for="name">Name *</label>
-                <input type="text" id="name" name="name" placeholder="Enter your name" required />
+            <div class="quick-facts-grid">
+              <div class="fact-item">
+                <span class="fact-label">Role:</span>
+                <span class="fact-value">Frontend Developer</span>
               </div>
-
-              <div class="input-group">
-                <label for="email">Email *</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required />
+              <div class="fact-item">
+                <span class="fact-label">Location:</span>
+                <span class="fact-value">India</span>
+              </div>
+              <div class="fact-item">
+                <span class="fact-label">Status:</span>
+                <span class="fact-value text-accent">Open to Opportunities</span>
+              </div>
+              <div class="fact-item">
+                <span class="fact-label">Languages:</span>
+                <span class="fact-value">English, Hindi</span>
               </div>
             </div>
 
-            <div class="input-group">
-              <label for="subject">Subject *</label>
-              <input type="text" id="subject" name="subject" placeholder="Project Inquiry" required />
+            <div class="about-actions">
+              <a href="#contact" class="btn btn-primary">Let's Work Together →</a>
+              <a href="mailto:niteshgoswami72812@gmail.com" class="btn btn-secondary">Direct Email</a>
             </div>
-
-            <div class="input-group">
-              <label for="message">Message *</label>
-              <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
-            </div>
-
-            <button type="submit" class="contact-btn">Send Message →</button>
-
-          </form>
+          </div>
         </div>
-
       </div>
     </section>
 
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="contact-card-wrapper">
+          <div class="contact-left">
+            <p class="section-tag text-light">GET IN TOUCH</p>
+            <h2 class="contact-title">Let's build something extraordinary together</h2>
+            <p class="contact-description">
+              Have a project in mind, an opportunity, or just want to connect? I am always happy to discuss new ideas and collaborate.
+            </p>
+
+            <div class="contact-methods">
+              <div class="contact-item">
+                <div class="contact-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                <div class="contact-details">
+                  <span class="contact-type">Email Address</span>
+                  <div class="email-copy-row">
+                    <a href="mailto:niteshgoswami72812@gmail.com" class="contact-link">niteshgoswami72812@gmail.com</a>
+                    <button type="button" id="copy-email-btn" class="copy-btn" title="Copy email">Copy</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </div>
+                <div class="contact-details">
+                  <span class="contact-type">LinkedIn</span>
+                  <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" class="contact-link">Connect on LinkedIn ↗</a>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </div>
+                <div class="contact-details">
+                  <span class="contact-type">GitHub</span>
+                  <a href="https://github.com/niteshgoswami72812-create" target="_blank" rel="noopener noreferrer" class="contact-link">github.com/niteshgoswami72812-create ↗</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-right">
+            <form id="contact-form" class="contact-form" action="mailto:niteshgoswami72812@gmail.com" method="post" enctype="text/plain">
+              <div class="form-row">
+                <div class="input-group">
+                  <label for="name">Your Name *</label>
+                  <input type="text" id="name" name="name" placeholder="John Doe" required />
+                </div>
+                <div class="input-group">
+                  <label for="email">Your Email *</label>
+                  <input type="email" id="email" name="email" placeholder="john@example.com" required />
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label for="subject">Subject *</label>
+                <input type="text" id="subject" name="subject" placeholder="Project Inquiry / Job Opportunity" required />
+              </div>
+
+              <div class="input-group">
+                <label for="message">Your Message *</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell me about your project, timeline, or idea..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-submit">
+                <span>Send Message</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <a href="#home" class="logo">
+          <span class="logo-symbol">&lt;</span>Nit<span class="logo-accent">esh</span><span class="logo-symbol">/&gt;</span>
+        </a>
+        <p class="footer-tagline">Building clean, modern, and accessible web experiences.</p>
+      </div>
+
+      <div class="footer-nav">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Work</a>
+        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Nitesh Goswami. All rights reserved.</p>
+        <p class="footer-credit">Designed &amp; Built with ❤️ &amp; Modern Web Craft</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Back to Top Button -->
+  <button id="back-to-top" class="back-to-top-btn" aria-label="Back to top" title="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <!-- JavaScript File -->
+  <script src="./js/script.js"></script>
 </body>
 </html>
