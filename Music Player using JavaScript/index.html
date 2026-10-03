@@ -1,225 +1,132 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>NG Music Player</title>
 
-    <link rel="stylesheet" href="./style.css">
-</head>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
 
-<body>
-
+  <body>
     <div class="background">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
     </div>
 
-
     <main class="player">
+      <!-- TOP BAR -->
 
-        <!-- TOP BAR -->
+      <header class="top-bar">
+        <div class="brand">
+          <div class="brand-icon">NG</div>
 
-        <header class="top-bar">
-
-            <div class="brand">
-
-                <div class="brand-icon">
-                    NG
-                </div>
-
-                <div>
-                    <h3>TASK 4</h3>
-                    <span>Music Player</span>
-                </div>
-
-            </div>
-
-            <button class="menu-btn">
-                •••
-            </button>
-
-        </header>
-
-
-        <!-- MUSIC ICON -->
-
-        <div class="music-icon-box">
-
-            <div class="music-icon">
-                ♪
-            </div>
-
-            <div class="sound-wave">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-
+          <div>
+            <h3>TASK 4</h3>
+            <span>Music Player</span>
+          </div>
         </div>
 
+        <button class="menu-btn">•••</button>
+      </header>
 
-        <!-- SONG INFO -->
+      <!-- MUSIC ICON -->
 
-        <section class="song-info">
+      <div class="music-icon-box">
+        <div class="music-icon">♪</div>
 
-            <div>
+        <div class="sound-wave">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
 
-                <h1 id="title">
-                    Song One
-                </h1>
+      <!-- SONG INFO -->
 
-                <p id="artist">
-                    Nitesh Music
-                </p>
+      <section class="song-info">
+        <div>
+          <h1 id="title">Song One</h1>
 
-            </div>
+          <p id="artist">Nitesh Music</p>
+        </div>
 
-            <button    
-                id="likeBtn"
-                class="like-btn">
-                ♡    
-            </button>
+        <button id="likeBtn" class="like-btn">♡</button>
+      </section>
 
-        </section>
+      <!-- AUDIO -->
 
+      <audio id="audio"></audio>
 
-        <!-- AUDIO -->
+      <!-- PROGRESS -->
 
-        <audio id="audio"></audio>
+      <section class="progress-section">
+        <div class="time-row">
+          <span id="currentTime"> 0:00 </span>
 
+          <span id="duration"> 0:00 </span>
+        </div>
 
-        <!-- PROGRESS -->
+        <input type="range" id="progress" min="0" max="100" value="0" />
+      </section>
 
-        <section class="progress-section">
+      <!-- CONTROLS -->
 
-            <div class="time-row">
+      <section class="main-controls">
+        <button id="shuffle" class="small-control">🔀</button>
 
-                <span id="currentTime">
-                    0:00
-                </span>
+        <button id="prev" class="control">⏮</button>
 
-                <span id="duration">
-                    0:00
-                </span>
+        <button id="play" class="play-btn">▶</button>
 
-            </div>
+        <button id="next" class="control">⏭</button>
 
-            <input
-                type="range"
-                id="progress"
-                min="0"
-                max="100"
-                value="0"
-            >
+        <button id="repeat" class="small-control">🔁</button>
+      </section>
 
-        </section>
+      <!-- VOLUME -->
 
+      <section class="volume-section">
+        <span>🔊</span>
 
-        <!-- CONTROLS -->
+        <input
+          type="range"
+          id="volume"
+          min="0"
+          max="1"
+          step="0.01"
+          value="0.8"
+        />
 
-        <section class="main-controls">
+        <span id="volumeValue"> 80% </span>
+      </section>
 
-            <button
-                id="shuffle"
-                class="small-control">
-                🔀
-            </button>
+      <!-- PLAYLIST -->
 
-            <button
-                id="prev"
-                class="control">
-                ⏮
-            </button>
+      <section class="playlist-section">
+        <div class="playlist-heading">
+          <div>
+            <h2>Playlist</h2>
 
-            <button
-                id="play"
-                class="play-btn">
-                ▶
-            </button>
+            <p id="songCount">3 Songs</p>
+          </div>
 
-            <button
-                id="next"
-                class="control">
-                ⏭
-            </button>
+          <span class="playlist-icon"> ♫ </span>
+        </div>
 
-            <button
-                id="repeat"
-                class="small-control">
-                🔁
-            </button>
+        <ul id="playlist"></ul>
+      </section>
 
-        </section>
-
-
-        <!-- VOLUME -->
-
-        <section class="volume-section">
-
-            <span>🔊</span>
-
-            <input
-                type="range"
-                id="volume"
-                min="0"
-                max="1"
-                step="0.01"
-                value="0.8"
-            >
-
-            <span id="volumeValue">
-                80%
-            </span>
-
-        </section>
-
-
-        <!-- PLAYLIST -->
-
-        <section class="playlist-section">
-
-            <div class="playlist-heading">
-
-                <div>
-
-                    <h2>
-                        Playlist
-                    </h2>
-
-                    <p id="songCount">
-                        3 Songs
-                    </p>
-
-                </div>
-
-                <span class="playlist-icon">
-                    ♫
-                </span>
-
-            </div>
-
-
-            <ul id="playlist"></ul>
-
-        </section>
-
-
-        <footer>
-            Designed with ❤️ by
-            <strong>Nitesh Goswami</strong>
-        </footer>
-
+      <footer>
+        Designed with ❤️ by
+        <strong>Nitesh Goswami</strong>
+      </footer>
     </main>
 
-
     <script src="./script.js"></script>
-
-</body>
-
+  </body>
 </html>
