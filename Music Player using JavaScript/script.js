@@ -1,23 +1,22 @@
 const songs = [
-    {
-        title: "Midnight Dreams",
-        artist: "Nitesh Music",
-        src: "./songs/song1.mp3"
-    },
+  {
+    title: "Midnight Dreams",
+    artist: "Nitesh Music",
+    src: "./songs/song1.mp3",
+  },
 
-    {
-        title: "Neon Lights",
-        artist: "Nitesh Music",
-        src: "./songs/song2.mp3"
-    },
+  {
+    title: "Neon Lights",
+    artist: "Nitesh Music",
+    src: "./songs/song2.mp3",
+  },
 
-    {
-        title: "Lost In The Night",
-        artist: "Nitesh Music",
-        src: "./songs/song3.mp3"
-    }
+  {
+    title: "Lost In The Night",
+    artist: "Nitesh Music",
+    src: "./songs/song3.mp3",
+  },
 ];
-
 
 const audio = document.getElementById("audio");
 
@@ -48,199 +47,146 @@ let shuffle = false;
 
 let repeat = false;
 
-
 /* =========================
    LOAD SONG
 ========================= */
 
 function loadSong(index) {
+  const song = songs[index];
 
-    const song = songs[index];
+  title.textContent = song.title;
 
-    title.textContent = song.title;
+  artist.textContent = song.artist;
 
-    artist.textContent = song.artist;
+  audio.src = song.src;
 
-    audio.src = song.src;
+  audio.load();
 
-    audio.load();
-
-    updatePlaylist();
+  updatePlaylist();
 }
-
 
 /* =========================
    PLAY
 ========================= */
 
 function playSong() {
+  audio
+    .play()
+    .then(() => {
+      isPlaying = true;
 
-    audio.play()
-        .then(() => {
+      playBtn.textContent = "❚❚";
 
-            isPlaying = true;
+      updatePlaylist();
+    })
+    .catch((error) => {
+      console.error("Audio Error:", error);
 
-            playBtn.textContent = "❚❚";
-
-            updatePlaylist();
-
-        })
-        .catch(error => {
-
-            console.error("Audio Error:", error);
-
-            alert(
-                "Song play nahi ho raha. songs folder aur MP3 filename check karo."
-            );
-
-        });
+      alert(
+        "Song play nahi ho raha. songs folder aur MP3 filename check karo.",
+      );
+    });
 }
-
 
 /* =========================
    PAUSE
 ========================= */
 
 function pauseSong() {
+  audio.pause();
 
-    audio.pause();
+  isPlaying = false;
 
-    isPlaying = false;
+  playBtn.textContent = "▶";
 
-    playBtn.textContent = "▶";
-
-    updatePlaylist();
+  updatePlaylist();
 }
-
 
 /* =========================
    PLAY BUTTON
 ========================= */
 
 playBtn.addEventListener("click", () => {
-
-    if (isPlaying) {
-
-        pauseSong();
-
-    } else {
-
-        playSong();
-
-    }
-
+  if (isPlaying) {
+    pauseSong();
+  } else {
+    playSong();
+  }
 });
-
 
 /* =========================
    NEXT
 ========================= */
 
 nextBtn.addEventListener("click", () => {
+  if (shuffle) {
+    let randomIndex;
 
-    if (shuffle) {
+    do {
+      randomIndex = Math.floor(Math.random() * songs.length);
+    } while (randomIndex === songIndex && songs.length > 1);
 
-        let randomIndex;
+    songIndex = randomIndex;
+  } else {
+    songIndex++;
 
-        do {
-
-            randomIndex =
-                Math.floor(
-                    Math.random() * songs.length
-                );
-
-        } while (
-            randomIndex === songIndex &&
-            songs.length > 1
-        );
-
-        songIndex = randomIndex;
-
-    } else {
-
-        songIndex++;
-
-        if (songIndex >= songs.length) {
-
-            songIndex = 0;
-
-        }
-
+    if (songIndex >= songs.length) {
+      songIndex = 0;
     }
+  }
 
-    loadSong(songIndex);
+  loadSong(songIndex);
 
-    playSong();
-
+  playSong();
 });
-
 
 /* =========================
    PREVIOUS
 ========================= */
 
 prevBtn.addEventListener("click", () => {
+  songIndex--;
 
-    songIndex--;
+  if (songIndex < 0) {
+    songIndex = songs.length - 1;
+  }
 
-    if (songIndex < 0) {
+  loadSong(songIndex);
 
-        songIndex = songs.length - 1;
-
-    }
-
-    loadSong(songIndex);
-
-    playSong();
-
+  playSong();
 });
-
 
 /* =========================
    PROGRESS
 ========================= */
 
 audio.addEventListener("timeupdate", () => {
+  if (!audio.duration) return;
 
-    if (!audio.duration) return;
+  const percent = (audio.currentTime / audio.duration) * 100;
 
-    const percent =
-        (audio.currentTime / audio.duration) * 100;
+  progress.value = percent;
 
-    progress.value = percent;
-
-    currentTime.textContent =
-        formatTime(audio.currentTime);
-
+  currentTime.textContent = formatTime(audio.currentTime);
 });
-
 
 /* =========================
    DURATION
 ========================= */
 
 audio.addEventListener("loadedmetadata", () => {
-
-    duration.textContent =
-        formatTime(audio.duration);
-
+  duration.textContent = formatTime(audio.duration);
 });
-
 
 /* =========================
    SEEK
 ========================= */
 
 progress.addEventListener("input", () => {
+  if (!audio.duration) return;
 
-    if (!audio.duration) return;
-
-    audio.currentTime =
-        (progress.value / 100) *
-        audio.duration;
-
+  audio.currentTime = (progress.value / 100) * audio.duration;
 });
-
 
 /* =========================
    VOLUME
@@ -251,91 +197,64 @@ audio.volume = 0.8;
 volume.value = 0.8;
 
 volume.addEventListener("input", () => {
+  audio.volume = Number(volume.value);
 
-    audio.volume = Number(volume.value);
-
-    volumeValue.textContent =
-        Math.round(audio.volume * 100) + "%";
-
+  volumeValue.textContent = Math.round(audio.volume * 100) + "%";
 });
-
 
 /* =========================
    SONG END
 ========================= */
 
 audio.addEventListener("ended", () => {
+  if (repeat) {
+    audio.currentTime = 0;
 
-    if (repeat) {
-
-        audio.currentTime = 0;
-
-        playSong();
-
-    } else {
-
-        nextBtn.click();
-
-    }
-
+    playSong();
+  } else {
+    nextBtn.click();
+  }
 });
-
 
 /* =========================
    ERROR CHECK
 ========================= */
 
 audio.addEventListener("error", () => {
-
-    console.error(
-        "Audio file load nahi hua:",
-        audio.src
-    );
-
+  console.error("Audio file load nahi hua:", audio.src);
 });
-
 
 /* =========================
    FORMAT TIME
 ========================= */
 
 function formatTime(time) {
+  if (!time || isNaN(time)) {
+    return "0:00";
+  }
 
-    if (!time || isNaN(time)) {
+  const minutes = Math.floor(time / 60);
 
-        return "0:00";
+  const seconds = Math.floor(time % 60)
+    .toString()
+    .padStart(2, "0");
 
-    }
-
-    const minutes =
-        Math.floor(time / 60);
-
-    const seconds =
-        Math.floor(time % 60)
-        .toString()
-        .padStart(2, "0");
-
-    return `${minutes}:${seconds}`;
-
+  return `${minutes}:${seconds}`;
 }
-
 
 /* =========================
    PLAYLIST
 ========================= */
 
 function createPlaylist() {
+  playlist.innerHTML = "";
 
-    playlist.innerHTML = "";
+  songs.forEach((song, index) => {
+    const item = document.createElement("li");
 
-    songs.forEach((song, index) => {
+    item.className = "song-item";
 
-        const item =
-            document.createElement("li");
-
-        item.className = "song-item";
-
-        item.innerHTML = `
+    item.innerHTML = `
 
             <div class="song-number">
                 ${String(index + 1).padStart(2, "0")}
@@ -359,163 +278,97 @@ function createPlaylist() {
 
         `;
 
+    item.addEventListener("click", () => {
+      songIndex = index;
 
-        item.addEventListener("click", () => {
+      loadSong(songIndex);
 
-            songIndex = index;
-
-            loadSong(songIndex);
-
-            playSong();
-
-        });
-
-
-        playlist.appendChild(item);
-
+      playSong();
     });
 
+    playlist.appendChild(item);
+  });
 
-    document.getElementById("songCount").textContent =
-        `${songs.length} Songs`;
-
+  document.getElementById("songCount").textContent = `${songs.length} Songs`;
 }
-
 
 /* =========================
    UPDATE PLAYLIST
 ========================= */
 
 function updatePlaylist() {
+  const items = document.querySelectorAll(".song-item");
 
-    const items =
-        document.querySelectorAll(".song-item");
+  items.forEach((item, index) => {
+    item.classList.toggle("active", index === songIndex);
 
-    items.forEach((item, index) => {
+    const status = item.querySelector(".song-status");
 
-        item.classList.toggle(
-            "active",
-            index === songIndex
-        );
-
-        const status =
-            item.querySelector(".song-status");
-
-        if (
-            index === songIndex &&
-            isPlaying
-        ) {
-
-            status.textContent = "♫";
-
-        } else {
-
-            status.textContent = "•";
-
-        }
-
-    });
-
+    if (index === songIndex && isPlaying) {
+      status.textContent = "♫";
+    } else {
+      status.textContent = "•";
+    }
+  });
 }
-
 
 /* =========================
    SHUFFLE
 ========================= */
 
-document
-    .getElementById("shuffle")
-    .addEventListener("click", function () {
+document.getElementById("shuffle").addEventListener("click", function () {
+  shuffle = !shuffle;
 
-        shuffle = !shuffle;
-
-        this.style.color =
-            shuffle
-                ? "#b26cff"
-                : "";
-
-    });
-
+  this.style.color = shuffle ? "#b26cff" : "";
+});
 
 /* =========================
    REPEAT
 ========================= */
 
-document
-    .getElementById("repeat")
-    .addEventListener("click", function () {
+document.getElementById("repeat").addEventListener("click", function () {
+  repeat = !repeat;
 
-        repeat = !repeat;
-
-        this.style.color =
-            repeat
-                ? "#ff55d6"
-                : "";
-
-    });
-
+  this.style.color = repeat ? "#ff55d6" : "";
+});
 
 /* =========================
    LIKE
 ========================= */
 
 likeBtn.addEventListener("click", () => {
+  likeBtn.classList.toggle("active");
 
-    likeBtn.classList.toggle("active");
-
-    likeBtn.textContent =
-        likeBtn.classList.contains("active")
-            ? "♥"
-            : "♡";
-
+  likeBtn.textContent = likeBtn.classList.contains("active") ? "♥" : "♡";
 });
-
 
 /* =========================
    KEYBOARD
 ========================= */
 
-document.addEventListener("keydown", event => {
+document.addEventListener("keydown", (event) => {
+  if (event.target.tagName === "INPUT") {
+    return;
+  }
 
-    if (
-        event.target.tagName === "INPUT"
-    ) {
-        return;
+  if (event.code === "Space") {
+    event.preventDefault();
+
+    if (isPlaying) {
+      pauseSong();
+    } else {
+      playSong();
     }
+  }
 
+  if (event.code === "ArrowRight") {
+    nextBtn.click();
+  }
 
-    if (event.code === "Space") {
-
-        event.preventDefault();
-
-        if (isPlaying) {
-
-            pauseSong();
-
-        } else {
-
-            playSong();
-
-        }
-
-    }
-
-
-    if (event.code === "ArrowRight") {
-
-        nextBtn.click();
-
-    }
-
-
-    if (event.code === "ArrowLeft") {
-
-        prevBtn.click();
-
-    }
-
+  if (event.code === "ArrowLeft") {
+    prevBtn.click();
+  }
 });
-
 
 /* =========================
    START
